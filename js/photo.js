@@ -42,7 +42,7 @@
             container.style.position = 'relative'
             document.body.append(container)
             const labeledFaceDescriptors = await loadLabeledImages()
-            const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
+            const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.4)
             console.log("image uploaded333");
             const canvas = faceapi.createCanvasFromMedia(image)
             container.append(canvas)
@@ -70,7 +70,7 @@ function loadLabeledImages() {
       labels.map(async label => {
         const descriptions = []
         for (let i = 1; i <= 2; i++) {
-          const img = await faceapi.fetchImage(`https://raw.githubusercontent.com/pranaysaha077/java_script_face_recognition/blob/master/train_images/${label}/${i}.jpg`)
+          const img = await faceapi.fetchImage(`https://raw.githubusercontent.com/pranaysaha077/java_script_face_recognition/master/train_images/${label}/${i}.png`)
           const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
           descriptions.push(detections.descriptor)
         }
